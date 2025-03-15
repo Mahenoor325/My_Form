@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 50%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>User Data Form</h2>
+        <form id="dataForm">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone:</label>
+                <input type="tel" id="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gender:</label>
+                <select id="gender">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Occupation:</label>
+                <select id="occupation">
+                    <option value=""> Select Occupation</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Software Developer">Software Developer</option>
+                    <option value="IT Professional">IT Professional</option>
+                    <option value="Student">Student</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Address:</label>
+                <textarea id="address" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Country:</label>
+                <select id="Country">
+                    <option value="Afghanistan">Afghanistan</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Finland">Finland</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Hawai">Hawai</option>
+                    <option value="Iran">India</option>
+                    <option value="Japan">Japam</option>
+                    <option value="Kuwait">Kuwait</option>
+                    <option value="London">London</option>
+                    <option value="Malaysia">Malaysia</option>
+                    <option value="Norway">Norway</option>
+                    <option value="Oman">Oman</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Qatar">Qatar</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Zimbabwe">Zimbabwe</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>LinkedIn Profile:</label>
+                <input type="url" id="linkedin" required>
+            </div>
+
+            <button type="button" onclick="submitData()">Submit</button>
+        </form>
+
+        <p id="response"></p>
+    </div>
+
+    <script>
+        function submitData() {
+            let formURL = "https://script.google.com/macros/s/AKfycbxFXgjjUZwsEUz6RvqrzCfJhIC5UTrPsDtB9Un7GM9XJDJl2gelPKaQNEFmg4etWYo/exec"; // Replace with your Google Apps Script URL
+
+            let formData = new FormData();
+            formData.append("name", document.getElementById("name").value);
+            formData.append("email", document.getElementById("email").value);
+            formData.append("phone", document.getElementById("phone").value);
+            formData.append("gender", document.getElementById("gender").value);
+            formData.append("occupation", document.getElementById("occupation").value);
+            formData.append("address", document.getElementById("address").value);
+            formData.append("country", document.getElementById("country").value);
+            formData.append("linkedin", document.getElementById("linkedin").value);
+
+            fetch(formURL, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            }).then(() => {
+                document.getElementById("response").innerHTML = "<span style='color: green;'>Form submitted successfully!</span>";
+                document.getElementById("dataForm").reset();
+            }).catch(error => {
+                document.getElementById("response").innerHTML = "<span style='color: red;'>Error submitting form. Try again.</span>";
+                console.error("Error:", error);
+            });
+        }
+    </script>
+
+</body>
+</html>
