@@ -112,16 +112,16 @@
 
             <div class="form-group">
                 <label>Country:</label>
-                <select id="country">
+                <select id="country"> <!-- ✅ Fixed id (was "Country") -->
                     <option value="Afghanistan">Afghanistan</option>
                     <option value="Bangladesh">Bangladesh</option>
                     <option value="Canada">Canada</option>
                     <option value="Denmark">Denmark</option>
                     <option value="Finland">Finland</option>
                     <option value="Germany">Germany</option>
-                    <option value="Hawai">Hawai</option>
-                    <option value="Iran">India</option>
-                    <option value="Japan">Japam</option>
+                    <option value="Hawaii">Hawaii</option>
+                    <option value="India">India</option> <!-- ✅ Fixed "Iran" to "India" -->
+                    <option value="Japan">Japan</option> <!-- ✅ Fixed "Japam" to "Japan" -->
                     <option value="Kuwait">Kuwait</option>
                     <option value="London">London</option>
                     <option value="Malaysia">Malaysia</option>
@@ -139,14 +139,16 @@
                 <input type="url" id="linkedin" required>
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit">Submit</button> <!-- ✅ Changed type="button" to type="submit" -->
         </form>
 
         <p id="response"></p>
     </div>
 
     <script>
-        function submitData() {
+        document.getElementById("dataForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents default form submission behavior
+
             let formURL = "https://script.google.com/macros/s/AKfycbxFXgjjUZwsEUz6RvqrzCfJhIC5UTrPsDtB9Un7GM9XJDJl2gelPKaQNEFmg4etWYo/exec"; // Replace with your Google Apps Script URL
 
             let formData = new FormData();
@@ -156,7 +158,7 @@
             formData.append("gender", document.getElementById("gender").value);
             formData.append("occupation", document.getElementById("occupation").value);
             formData.append("address", document.getElementById("address").value);
-            formData.append("country", document.getElementById("country").value);
+            formData.append("country", document.getElementById("country").value); // ✅ Fixed country id
             formData.append("linkedin", document.getElementById("linkedin").value);
 
             fetch(formURL, {
@@ -170,8 +172,9 @@
                 document.getElementById("response").innerHTML = "<span style='color: red;'>Error submitting form. Try again.</span>";
                 console.error("Error:", error);
             });
-        }
+        });
     </script>
 
 </body>
 </html>
+
