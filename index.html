@@ -3,103 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Data Form</title>
+    <title>Feedback Form</title>
     <style>
-        /* Apply a smooth gradient background */
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: Arial, sans-serif;
             background: linear-gradient(to right, #ff9a9e, #fad0c4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            padding: 20px; /* Prevent content from touching screen edges */
-            overflow: hidden; /* Prevent background scrolling */
-        }
-
-        /* Wrapper to ensure full visibility */
-        .wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 100%;
-            height: 100%;
-            overflow-y: auto; /* Enables scrolling if needed */
+            min-height: 100vh; /* Ensures form is fully visible */
+            padding-top: 20px;
         }
 
-        /* Centering the form */
         .container {
-            width: 90%;
-            max-width: 450px;
+            width: 400px;
             background: white;
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 0.8s ease-in-out;
-            max-height: 90vh; /* Prevents content from getting cut */
-            overflow-y: auto; /* Enables scrolling inside the form */
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h2 {
+        h3 {
             text-align: center;
-            color: #ff477e;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
         }
 
         label {
             font-weight: bold;
-            color: #555;
-            margin-bottom: 5px;
+            display: block;
+            margin-top: 10px;
         }
 
-        input, textarea, select {
-            padding: 10px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            transition: 0.3s;
-            font-size: 16px;
+        .required::after {
+            content: " *";
+            color: red;
         }
 
-        input:focus, textarea:focus, select:focus {
-            border-color: #ff477e;
-            box-shadow: 0px 0px 8px rgba(255, 71, 126, 0.5);
-            outline: none;
-            transform: scale(1.02);
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #rating-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .star {
+            font-size: 30px;
+            cursor: pointer;
+            color: gray;
+        }
+
+        .star.selected {
+            color: gold;
         }
 
         button {
-            padding: 12px;
-            background: #ff477e;
+            width: 100%;
+            padding: 10px;
+            background: #ff6b6b;
+            border: none;
             color: white;
             font-size: 16px;
-            border: none;
-            border-radius: 8px;
             cursor: pointer;
-            transition: 0.3s;
+            margin-top: 15px;
+            border-radius: 5px;
         }
 
         button:hover {
-            background: #e63a69;
-            box-shadow: 0px 5px 15px rgba(255, 71, 126, 0.5);
-            transform: scale(1.05);
+            background: #ff4757;
         }
 
         #response {
@@ -107,112 +84,108 @@
             margin-top: 10px;
             font-weight: bold;
         }
-
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <div class="container">
-            <h2>User Data Form</h2>
-            <form id="dataForm">
-                <div class="form-group">
-                    <label>Name:</label>
-                    <input type="text" id="name" required>
-                </div>
+    <div class="container">
+        <h3>CHEVALIER T. THOMAS ELIZABETH COLLEGE FOR WOMEN <br> BCA</h3>
 
-                <div class="form-group">
-                    <label>Date of Birth:</label>
-                    <input type="date" id="dob" required>
-                </div>
+        <form id="feedbackForm">
+            <label class="required">Name:</label>
+            <input type="text" id="name" required>
 
-                <div class="form-group">
-                    <label>Phone:</label>
-                    <input type="tel" id="phone" required>
-                </div>
+            <label>Phone:</label>
+            <input type="tel" id="phone">
 
-                <div class="form-group">
-                    <label>Gender:</label>
-                    <select id="gender" required>
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
+            <label class="required">Gender:</label>
+            <select id="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
 
-                <div class="form-group">
-                    <label>Occupation:</label>
-                    <select id="occupation" required>
-                        <option value="">Select Occupation</option>
-                        <option value="Doctor">Doctor</option>
-                        <option value="Engineer">Engineer</option>
-                        <option value="Teacher">Teacher</option>
-                        <option value="Software Developer">Software Developer</option>
-                        <option value="IT Professional">IT Professional</option>
-                        <option value="Student">Student</option>
-                    </select>
-                </div>
+            <label class="required">Occupation:</label>
+            <select id="occupation" required>
+                <option value="">Select Occupation</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Engineer">Engineer</option>
+                <option value="Teacher">Teacher</option>
+                <option value="Software Developer">Software Developer</option>
+                <option value="IT Professional">IT Professional</option>
+                <option value="Student">Student</option>
+                <option value="Other">Other</option>
+            </select>
 
-                <div class="form-group">
-                    <label>Address:</label>
-                    <textarea id="address" required></textarea>
-                </div>
+            <label class="required">Country:</label>
+            <select id="country" required>
+                <option value="">Select Country</option>
+                <option value="India">India</option>
+                <option value="United States">United States</option>
+                <option value="Canada">Canada</option>
+                <option value="Germany">Germany</option>
+                <option value="Japan">Japan</option>
+            </select>
 
-                <div class="form-group">
-                    <label>Country:</label>
-                    <select id="country" required>
-                        <option value="">Select Country</option>
-                        <option value="Afghanistan">Afghanistan</option>
-                        <option value="Bangladesh">Bangladesh</option>
-                        <option value="Canada">Canada</option>
-                        <option value="Denmark">Denmark</option>
-                        <option value="Finland">Finland</option>
-                        <option value="Germany">Germany</option>
-                        <option value="India">India</option>
-                        <option value="Japan">Japan</option>
-                        <option value="Malaysia">Malaysia</option>
-                        <option value="Norway">Norway</option>
-                        <option value="Poland">Poland</option>
-                        <option value="Russia">Russia</option>
-                        <option value="United States">United States</option>
-                        <option value="Zimbabwe">Zimbabwe</option>
-                    </select>
-                </div>
+            <label>Email (Optional):</label>
+            <input type="email" id="email">
 
-                <div class="form-group">
-                    <label>Email (Optional):</label>
-                    <input type="email" id="email">
-                </div>
+            <label>Feedback (Optional):</label>
+            <textarea id="feedback"></textarea>
 
-                <div class="form-group">
-                    <label>LinkedIn Profile (Optional):</label>
-                    <input type="url" id="linkedin">
-                </div>
+            <label class="required">Rate Us:</label>
+            <div id="rating-container">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+            <input type="hidden" id="rating" required>
 
-                <button type="submit">Submit</button>
-            </form>
+            <button type="submit">Submit</button>
+        </form>
 
-            <p id="response"></p>
-        </div>
+        <p id="response"></p>
     </div>
 
     <script>
-        document.getElementById("dataForm").addEventListener("submit", function(event) {
+        let selectedRating = 0;
+
+        document.querySelectorAll(".star").forEach(star => {
+            star.addEventListener("click", function () {
+                selectedRating = this.getAttribute("data-value");
+                document.getElementById("rating").value = selectedRating;
+
+                document.querySelectorAll(".star").forEach(s => {
+                    s.classList.remove("selected");
+                    if (s.getAttribute("data-value") <= selectedRating) {
+                        s.classList.add("selected");
+                    }
+                });
+            });
+        });
+
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
             event.preventDefault();
 
-            let formURL = "https://script.google.com/macros/s/AKfycbx1xLrz-JdtVRtXpmVgFpbePcBWPtU470kB0ugb40Yhcg8b8-OHHS1MFcpNwF_aq2qe/exec";
+            if (selectedRating === 0) {
+                document.getElementById("response").innerHTML = "<span style='color: red;'>Please select a rating.</span>";
+                return;
+            }
+
+            let formURL = "https://script.google.com/macros/s/AKfycbxF4dwJ-EJwzXzALcDlGam0v2WiG9DO8iovup9rwEYzwwqfCEbDApcme4Get1wIyCs/exec"; // Replace with your script URL
 
             let formData = new FormData();
             formData.append("name", document.getElementById("name").value);
-            formData.append("dob", document.getElementById("dob").value);
             formData.append("phone", document.getElementById("phone").value);
             formData.append("gender", document.getElementById("gender").value);
             formData.append("occupation", document.getElementById("occupation").value);
-            formData.append("address", document.getElementById("address").value);
             formData.append("country", document.getElementById("country").value);
-            formData.append("email", document.getElementById("email").value || "");
-            formData.append("linkedin", document.getElementById("linkedin").value || "");
+            formData.append("email", document.getElementById("email").value || "N/A");
+            formData.append("feedback", document.getElementById("feedback").value || "No feedback");
+            formData.append("rating", selectedRating);
 
             fetch(formURL, {
                 method: "POST",
@@ -220,7 +193,9 @@
                 mode: "no-cors"
             }).then(() => {
                 document.getElementById("response").innerHTML = "<span style='color: green;'>Form submitted successfully!</span>";
-                document.getElementById("dataForm").reset();
+                document.getElementById("feedbackForm").reset();
+                document.querySelectorAll(".star").forEach(star => star.classList.remove("selected"));
+                selectedRating = 0;
             }).catch(error => {
                 document.getElementById("response").innerHTML = "<span style='color: red;'>Error submitting form. Try again.</span>";
                 console.error("Error:", error);
